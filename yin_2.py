@@ -72,8 +72,12 @@ plt.ylabel("Frekuensi Fundamental F₀ (Hz)")
 plt.grid(True)
 plt.tight_layout()
 
-# === 7. Tambahkan legend manual untuk note unik ===
-unique_notes = sorted(set([n for n in notes if n != 'N/A']))
+# Dapatkan unique_notes sesuai urutan kemunculan pertama (bukan alfabetikal)
+unique_notes = []
+for n in notes:
+    if n != 'N/A' and n not in unique_notes:
+        unique_notes.append(n)
+
 for i, note in enumerate(unique_notes):
     plt.plot([], [], color=f'C{hash(note) % 10}', label=note)
 plt.legend(title="Nada")
